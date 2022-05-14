@@ -85,3 +85,18 @@ getJsonValue(){
     echo $value
 
 }
+
+sendTextMessage () {
+
+    local text="$1"
+    [ -n "$2" ] && local chat_id=$2 || local chat_id=$PRINT_MASTER
+
+    $TELEGRAM_CURL \
+        -X POST \
+        ${T_API}/sendMessage \
+        -d chat_id=$chat_id \
+        -d parse_mode=Markdown \
+        --data-urlencode text="$text"
+
+
+}
