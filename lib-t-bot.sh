@@ -64,7 +64,6 @@ getUpdates(){
     $TELEGRAM_CURL \
     -X GET \
     ${T_API}/getUpdates"?limit=1&offset=${lastKnown}&timeout=10" )
-    
     echo ${jsonResult}
 }
 
@@ -83,20 +82,15 @@ getJsonValue(){
     local key=$2
     value=$(echo "$json" | jq -r "$key // empty")
     echo $value
-
 }
 
 sendTextMessage () {
-
     local text="$1"
     [ -n "$2" ] && local chat_id=$2 || local chat_id=$PRINT_MASTER
-
     $TELEGRAM_CURL \
         -X POST \
         ${T_API}/sendMessage \
         -d chat_id=$chat_id \
         -d parse_mode=Markdown \
         --data-urlencode text="$text"
-
-
 }

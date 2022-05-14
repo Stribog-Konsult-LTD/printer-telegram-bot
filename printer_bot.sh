@@ -22,7 +22,6 @@ PRINT_MASTER=$(getConfigItem "general" "master" )
 if [ -z "$PRINT_MASTER" ] ; then
     printred "Please add master chat id in $CONFIG_FILE_NAME [general]"
     setConfigItem "general" "master" "Master chat id here"
-
 fi
 
 processFile(){
@@ -31,11 +30,9 @@ processFile(){
     local mime_type=$3
     local caption=$4
     printgreen "processFile file_name:$file_name, caption: $caption, file_id: $file_id, mime_type: $mime_type"
-
     local fileInfo=$($TELEGRAM_CURL \
     -X GET \
     ${T_API}/getFile"?file_id=${file_id}" )
-
     if [ "$(getJsonValue "$fileInfo" ".ok" )" == true ] ; then
         local file_path="$(getJsonValue "$fileInfo" ".result.file_path")"
         download_file_name="$DOWNLOAD_DIR/$file_name"
@@ -51,7 +48,6 @@ processFile(){
 
 
 }
-
 
 # processText(){
 # }
@@ -93,9 +89,7 @@ processMessage(){
         fi
     else
         printblue "No new messages"
-
     fi
-
 }
 
 
