@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 BASEDIR=$( readlink -f $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) )
 
 printred(){
