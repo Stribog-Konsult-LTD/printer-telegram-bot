@@ -87,7 +87,7 @@ processMessage(){
             sendTextMessage "Your chat ID is: $chatId, set it in configuration file as master" "$chatId"
         fi
     else
-        printblue "No new messages"
+       echo -n "."
     fi
 }
 
