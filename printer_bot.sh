@@ -23,6 +23,18 @@ if [ -z "$PRINT_MASTER" ] ; then
     setConfigItem "general" "master" "Master chat id here"
 fi
 
+isSupportedFormat(){
+    local mime_type="$1"
+    case $mime_type in
+        'application/pdf' | 'image/jpg' | 'image/png')
+        echo "yes"
+        ;;
+    *)
+        echo "no"
+        ;;
+    esac
+}
+
 processFile(){
     local file_name=$1
     local file_id=$2
@@ -36,7 +48,7 @@ processFile(){
         local file_path="$(getJsonValue "$fileInfo" ".result.file_path")"
         download_file_name="$DOWNLOAD_DIR/$file_name"
         wget ${T_FILE}/$file_path -O "$download_file_name"
-        if [ "${mime_type}" == "application/pdf" ] ; then
+        if [ "$(isSupportedFormat ${mime_type})" == "yes" ] ; then
             lp_output=$(lp  "$download_file_name")
             echo "lp_output: $lp_output"
         fi
