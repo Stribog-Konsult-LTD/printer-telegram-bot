@@ -5,7 +5,9 @@ I use this bot to print documents from phone, or away from home. With [Notebloc]
 
 1. Create a New Bot for Telegram, or use your existing bot.
 2. Creafe file config.ini with content:
+ <pre>
   [general]
-  botKey = <telegram bot key>
-  master = <master id, can be a group>
+  botKey = "telegram bot key"
+  master = "master id, can be a group"
+  </pre>
 3. Execute `printer_bot.sh`
